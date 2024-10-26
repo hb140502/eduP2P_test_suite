@@ -9,7 +9,6 @@ import (
 	"golang.org/x/exp/maps"
 	"log/slog"
 	"net/netip"
-	"strings"
 )
 
 // Incomparable is a zero-width incomparable type. If added as the
@@ -121,12 +120,6 @@ func NormaliseAddrSlice(s []netip.Addr) []netip.Addr {
 
 func NormaliseAddrPortSlice(s []netip.AddrPort) []netip.AddrPort {
 	return Map(s, NormaliseAddrPort)
-}
-
-func PrettyAddrPortSlice(s []netip.AddrPort) string {
-	return "[]netip.AddrPort{" + strings.Join(Map(NormaliseAddrPortSlice(s), func(t netip.AddrPort) string {
-		return t.String()
-	}), ",") + "}"
 }
 
 // Map is a generic slice mapping function taken from https://stackoverflow.com/a/71624929/8700553,
